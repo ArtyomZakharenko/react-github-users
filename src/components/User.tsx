@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Card from "./Card";
 import Followers from "./Followers";
+import followers from "./Followers";
 
 const User = () => {
 	return (

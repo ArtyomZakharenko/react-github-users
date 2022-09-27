@@ -1,7 +1,28 @@
+import { useContext } from "react";
 import styled from 'styled-components';
+import { GithubContext } from "../context/context";
+import { Follower } from "../models/follower";
 
 const Followers = () => {
-	return <h2>followers component</h2>;
+	const { followers } = useContext(GithubContext);
+	return (
+			<Wrapper>
+				<div className='followers'>
+					{followers.map((follower: Follower, index: number) => {
+						const { avatar_url: img, html_url, login } = follower;
+						return (
+							<article key={index}>
+								<img src={img} alt={login} />
+								<div>
+									<h4>{login}</h4>
+									<a href={html_url}>{html_url}</a>
+								</div>
+							</article>
+						);
+					})}
+				</div>
+			</Wrapper>
+	);
 };
 
 const Wrapper = styled.article`
@@ -28,7 +49,7 @@ const Wrapper = styled.article`
   }
 
   .followers {
-    overflow: scroll;
+    
     height: 260px;
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(45px, 1fr));

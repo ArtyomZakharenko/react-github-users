@@ -17,8 +17,6 @@ const Card = () => {
 		login
 	} = githubUser as User;
 
-	console.log(githubUser);
-
 	return (
 		<Wrapper>
 			<header>
