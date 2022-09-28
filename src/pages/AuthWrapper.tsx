@@ -1,7 +1,25 @@
 import styled from 'styled-components';
+import loadingImage from '../images/preloader.gif';
+import { useAuth0 } from "@auth0/auth0-react";
+import { ReactNode } from "react";
 
-function AuthWrapper() {
-	return <h2>authwrapper component</h2>;
+function AuthWrapper({ children }: { children: ReactNode }) {
+	const { isLoading, error } = useAuth0();
+	if (isLoading) {
+		return (
+			<Wrapper>
+				<img src={loadingImage} className='loading-img' alt='loading'/>
+			</Wrapper>
+		);
+	}
+	if (error) {
+		return (
+			<Wrapper><h1>
+				{error.message}
+			</h1></Wrapper>
+		);
+	}
+	return <>{children}</>;
 }
 
 const Wrapper = styled.section`
